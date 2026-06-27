@@ -1,0 +1,39 @@
+﻿@model IEnumerable<FacturacionApp.Models.AuditoriaFactura>
+@{
+    ViewBag.Title = "Auditoría de Facturas";
+}
+
+<h2>📋 Auditoría — Historial de Cambios en Facturas</h2>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">Todavía no se ha editado ninguna factura.</div>
+}
+else
+{
+    <table class="table table-bordered table-hover align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>Factura</th>
+                <th>Campo modificado</th>
+                <th>Valor anterior</th>
+                <th>Valor nuevo</th>
+                <th>Modificado por</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var a in Model)
+            {
+                <tr>
+                    <td><a asp-action="Factura" asp-route-id="@a.FacturaId">@a.Factura?.NumeroFactura</a></td>
+                    <td class="fw-bold">@a.CampoModificado</td>
+                    <td class="text-danger">@a.ValorAnterior</td>
+                    <td class="text-success">@a.ValorNuevo</td>
+                    <td>@a.Usuario?.NombreCompleto</td>
+                    <td>@a.Fecha.ToString("dd/MM/yyyy hh:mm tt")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

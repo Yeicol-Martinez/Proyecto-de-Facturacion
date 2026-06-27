@@ -1,0 +1,152 @@
+is_global = true
+build_property.TargetFramework = net10.0
+build_property.TargetFramework = net10.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.TargetFrameworkIdentifier = .NETCoreApp
+build_property.TargetFrameworkVersion = v10.0
+build_property.EntryPointFilePath = 
+build_property.RootNamespace = FacturacionApp
+build_property.RootNamespace = FacturacionApp
+build_property.ProjectDir = C:\Users\User\OneDrive - Universidad Autonoma de Santo Domingo\Escritorio\Cursos y Capacitaciones\Curso Itla\C# Avanzado\FacturacionApp\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 10.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\User\OneDrive - Universidad Autonoma de Santo Domingo\Escritorio\Cursos y Capacitaciones\Curso Itla\C# Avanzado\FacturacionApp
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 10.0
+build_property.EnableCodeStyleSeverity = 
+
+[C:/Users/User/OneDrive - Universidad Autonoma de Santo Domingo/Escritorio/Cursos y Capacitaciones/Curso Itla/C\# Avanzado/FacturacionApp/Views/Auditoria/Factura.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXVkaXRvcmlhXEZhY3R1cmEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/OneDrive - Universidad Autonoma de Santo Domingo/Escritorio/Cursos y Capacitaciones/Curso Itla/C\# Avanzado/FacturacionApp/Views/Auditoria/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXVkaXRvcmlhXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/OneDrive - Universidad Autonoma de Santo Domingo/Escritorio/Cursos y Capacitaciones/Curso Itla/C\# Avanzado/FacturacionApp/Views/Cliente/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/OneDrive - Universidad Autonoma de Santo Domingo/Escritorio/Cursos y Capacitaciones/Curso Itla/C\# Avanzado/FacturacionApp/Views/Cliente/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/OneDrive - Universidad Autonoma de Santo Domingo/Escritorio/Cursos y Capacitaciones/Curso Itla/C\# Avanzado/FacturacionApp/Views/Cliente/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/OneDrive - Universidad Autonoma de Santo Domingo/Escritorio/Cursos y Capacitaciones/Curso Itla/C\# Avanzado/FacturacionApp/Views/Cuenta/AccesoDenegado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VlbnRhXEFjY2Vzb0RlbmVnYWRvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/OneDrive - Universidad Autonoma de Santo Domingo/Escritorio/Cursos y Capacitaciones/Curso Itla/C\# Avanzado/FacturacionApp/Views/Cuenta/ConfigurarAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VlbnRhXENvbmZpZ3VyYXJBZG1pbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/OneDrive - Universidad Autonoma de Santo Domingo/Escritorio/Cursos y Capacitaciones/Curso Itla/C\# Avanzado/FacturacionApp/Views/Cuenta/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VlbnRhXExvZ2luLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/OneDrive - Universidad Autonoma de Santo Domingo/Escritorio/Cursos y Capacitaciones/Curso Itla/C\# Avanzado/FacturacionApp/Views/Factura/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmFjdHVyYVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/OneDrive - Universidad Autonoma de Santo Domingo/Escritorio/Cursos y Capacitaciones/Curso Itla/C\# Avanzado/FacturacionApp/Views/Factura/Detalle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmFjdHVyYVxEZXRhbGxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/OneDrive - Universidad Autonoma de Santo Domingo/Escritorio/Cursos y Capacitaciones/Curso Itla/C\# Avanzado/FacturacionApp/Views/Factura/EditarFactura.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmFjdHVyYVxFZGl0YXJGYWN0dXJhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/OneDrive - Universidad Autonoma de Santo Domingo/Escritorio/Cursos y Capacitaciones/Curso Itla/C\# Avanzado/FacturacionApp/Views/Factura/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmFjdHVyYVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/OneDrive - Universidad Autonoma de Santo Domingo/Escritorio/Cursos y Capacitaciones/Curso Itla/C\# Avanzado/FacturacionApp/Views/Factura/Reporte.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmFjdHVyYVxSZXBvcnRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/OneDrive - Universidad Autonoma de Santo Domingo/Escritorio/Cursos y Capacitaciones/Curso Itla/C\# Avanzado/FacturacionApp/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/OneDrive - Universidad Autonoma de Santo Domingo/Escritorio/Cursos y Capacitaciones/Curso Itla/C\# Avanzado/FacturacionApp/Views/Producto/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9cQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/OneDrive - Universidad Autonoma de Santo Domingo/Escritorio/Cursos y Capacitaciones/Curso Itla/C\# Avanzado/FacturacionApp/Views/Producto/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9cRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/OneDrive - Universidad Autonoma de Santo Domingo/Escritorio/Cursos y Capacitaciones/Curso Itla/C\# Avanzado/FacturacionApp/Views/Producto/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/OneDrive - Universidad Autonoma de Santo Domingo/Escritorio/Cursos y Capacitaciones/Curso Itla/C\# Avanzado/FacturacionApp/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/OneDrive - Universidad Autonoma de Santo Domingo/Escritorio/Cursos y Capacitaciones/Curso Itla/C\# Avanzado/FacturacionApp/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/OneDrive - Universidad Autonoma de Santo Domingo/Escritorio/Cursos y Capacitaciones/Curso Itla/C\# Avanzado/FacturacionApp/Views/Solicitud/BandejaAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29saWNpdHVkXEJhbmRlamFBZG1pbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/OneDrive - Universidad Autonoma de Santo Domingo/Escritorio/Cursos y Capacitaciones/Curso Itla/C\# Avanzado/FacturacionApp/Views/Solicitud/BandejaClientes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29saWNpdHVkXEJhbmRlamFDbGllbnRlcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/OneDrive - Universidad Autonoma de Santo Domingo/Escritorio/Cursos y Capacitaciones/Curso Itla/C\# Avanzado/FacturacionApp/Views/Solicitud/MisSolicitudes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29saWNpdHVkXE1pc1NvbGljaXR1ZGVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/OneDrive - Universidad Autonoma de Santo Domingo/Escritorio/Cursos y Capacitaciones/Curso Itla/C\# Avanzado/FacturacionApp/Views/Solicitud/SolicitarCliente.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29saWNpdHVkXFNvbGljaXRhckNsaWVudGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/OneDrive - Universidad Autonoma de Santo Domingo/Escritorio/Cursos y Capacitaciones/Curso Itla/C\# Avanzado/FacturacionApp/Views/Solicitud/SolicitarFactura.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29saWNpdHVkXFNvbGljaXRhckZhY3R1cmEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/OneDrive - Universidad Autonoma de Santo Domingo/Escritorio/Cursos y Capacitaciones/Curso Itla/C\# Avanzado/FacturacionApp/Views/Solicitud/SolicitarProducto.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29saWNpdHVkXFNvbGljaXRhclByb2R1Y3RvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/OneDrive - Universidad Autonoma de Santo Domingo/Escritorio/Cursos y Capacitaciones/Curso Itla/C\# Avanzado/FacturacionApp/Views/Usuario/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xDcmVhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/OneDrive - Universidad Autonoma de Santo Domingo/Escritorio/Cursos y Capacitaciones/Curso Itla/C\# Avanzado/FacturacionApp/Views/Usuario/Editar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xFZGl0YXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/OneDrive - Universidad Autonoma de Santo Domingo/Escritorio/Cursos y Capacitaciones/Curso Itla/C\# Avanzado/FacturacionApp/Views/Usuario/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/OneDrive - Universidad Autonoma de Santo Domingo/Escritorio/Cursos y Capacitaciones/Curso Itla/C\# Avanzado/FacturacionApp/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/OneDrive - Universidad Autonoma de Santo Domingo/Escritorio/Cursos y Capacitaciones/Curso Itla/C\# Avanzado/FacturacionApp/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

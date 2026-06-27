@@ -1,0 +1,50 @@
+﻿@model IEnumerable<FacturacionApp.Models.Solicitud>
+@{
+    ViewBag.Title = "Mis Solicitudes";
+}
+
+<h2>📋 Mis Solicitudes</h2>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">No has hecho ninguna solicitud todavía.</div>
+}
+else
+{
+    <table class="table table-bordered table-hover align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>Tipo</th>
+                <th>Cambio solicitado</th>
+                <th>Fecha</th>
+                <th>Estado</th>
+                <th>Comentario del revisor</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var s in Model)
+            {
+                <tr>
+                    <td>@s.TipoEntidad</td>
+                    <td>@s.CambioPropuesto</td>
+                    <td>@s.FechaSolicitud.ToString("dd/MM/yyyy hh:mm tt")</td>
+                    <td>
+                        @switch (s.Estado)
+                        {
+                            case FacturacionApp.Models.EstadoSolicitud.Pendiente:
+                                <span class="badge bg-warning text-dark">⏳ Pendiente</span>
+                                break;
+                            case FacturacionApp.Models.EstadoSolicitud.Aprobada:
+                                <span class="badge bg-success">✅ Aprobada</span>
+                                break;
+                            case FacturacionApp.Models.EstadoSolicitud.Rechazada:
+                                <span class="badge bg-danger">❌ Rechazada</span>
+                                break;
+                        }
+                    </td>
+                    <td>@s.ComentarioRevision</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

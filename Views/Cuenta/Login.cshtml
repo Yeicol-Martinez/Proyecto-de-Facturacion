@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Iniciar sesión";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>Iniciar sesión - FacturacionApp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body style="background:#1e3a5f; min-height:100vh; display:flex; align-items:center;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card shadow">
+                    <div class="card-body p-4">
+                        <h3 class="text-center mb-4">🧾 FacturacionApp</h3>
+
+                        @if (TempData["Exito"] != null)
+                        {
+                            <div class="alert alert-success">@TempData["Exito"]</div>
+                        }
+
+                        @if (!ViewData.ModelState.IsValid)
+                        {
+                            <div class="alert alert-danger">
+                                @Html.ValidationSummary(false)
+                            </div>
+                        }
+
+                        <form asp-action="Login" asp-route-returnUrl="@ViewBag.ReturnUrl" method="post">
+                            @Html.AntiForgeryToken()
+
+                            <div class="mb-3">
+                                <label class="form-label">Correo electrónico</label>
+                                <input type="email" name="email" class="form-control" required autofocus />
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Contraseña</label>
+                                <input type="password" name="password" class="form-control" required />
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100">Iniciar sesión</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

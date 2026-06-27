@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - FacturacionApp</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/FacturacionApp.styles.css" asp-append-version="true" />
+    <style>
+        .navbar-brand {
+        letter-spacing: 1px;
+        }
+
+        .nav-link:hover {
+        background: rgba(255,255,255,0.15);
+        border-radius: 6px;
+        }
+
+        .badge-estado-Pendiente {
+        background-color: #ffc107;
+        color: #000;
+        }
+
+        .badge-estado-Pagada {
+        background-color: #198754;
+        }
+
+        .badge-estado-Anulada {
+        background-color: #dc3545;
+        }
+
+        .dropdown-menu {
+        background: #1a2e1a;
+        border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .dropdown-item {
+        color: white;
+        font-weight: 500;
+        }
+
+        .dropdown-item:hover {
+        background: rgba(255,255,255,0.15);
+        color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-dark mb-3" style="background: linear-gradient(135deg, #1a2e1a, #2d6a2d);">
+            <div class="container-fluid px-4">
+                <a class="navbar-brand fw-bold fs-2" asp-area="" asp-controller="Home" asp-action="Index">
+                    🧾 FacturacionApp
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1 gap-1">
+                        <li class="nav-item">
+                            <a class="nav-link px-3 py-2 rounded text-white fw-bold fs-5"
+                               asp-area="" asp-controller="Home" asp-action="Index">🏠 Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3 py-2 rounded text-white fw-bold fs-5"
+                               asp-area="" asp-controller="Factura" asp-action="Index">🧾 Facturas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3 py-2 rounded text-white fw-bold fs-5"
+                               asp-area="" asp-controller="Cliente" asp-action="Index">👥 Clientes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3 py-2 rounded text-white fw-bold fs-5"
+                               asp-area="" asp-controller="Producto" asp-action="Index">📦 Productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3 py-2 rounded text-white fw-bold fs-5"
+                               asp-area="" asp-controller="Factura" asp-action="Reporte">📊 Reporte</a>
+                        </li>
+
+                        @* Menú de Administración — solo visible para Admin *@
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link px-3 py-2 rounded text-white fw-bold fs-5 dropdown-toggle"
+                                   href="#" role="button" data-bs-toggle="dropdown">
+                                    ⚙️ Administración
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item py-2"
+                                           asp-controller="Usuario" asp-action="Index">
+                                            👥 Gestión de usuarios
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item py-2"
+                                           asp-controller="Usuario" asp-action="Crear">
+                                            ➕ Crear usuario
+                                        </a>
+                                    </li>
+                                    <li><hr class="dropdown-divider" style="border-color:rgba(255,255,255,0.2);" /></li>
+                                    <li>
+                                        <a class="dropdown-item py-2"
+                                           asp-controller="Auditoria" asp-action="Index">
+                                            📋 Auditoría
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        @if (User.IsInRole("Admin") || User.IsInRole("DirectorOperaciones") || User.IsInRole("Empleado") || User.IsInRole("AuxiliarInventario"))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link px-3 py-2 rounded text-white fw-bold fs-5 dropdown-toggle"
+                                   href="#" role="button" data-bs-toggle="dropdown">
+                                    📨 Solicitudes
+                                </a>
+                                <ul class="dropdown-menu">
+                                    @if (User.IsInRole("DirectorOperaciones") || User.IsInRole("Admin"))
+                                    {
+                                        <li>
+                                            <a class="dropdown-item py-2" asp-controller="Solicitud" asp-action="BandejaClientes">
+                                                👥 Bandeja de Clientes
+                                            </a>
+                                        </li>
+                                    }
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        <li>
+                                            <a class="dropdown-item py-2" asp-controller="Solicitud" asp-action="BandejaAdmin">
+                                                📦🧾 Bandeja de Productos/Facturas
+                                            </a>
+                                        </li>
+                                    }
+                                    @if (User.IsInRole("Empleado") || User.IsInRole("AuxiliarInventario"))
+                                    {
+                                        <li>
+                                            <a class="dropdown-item py-2" asp-controller="Solicitud" asp-action="MisSolicitudes">
+                                                📋 Mis Solicitudes
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+
+                    <!-- Usuario y cerrar sesión -->
+                    <ul class="navbar-nav ms-auto">
+                        @if (User.Identity != null && User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item d-flex align-items-center me-2">
+                                <span class="text-white fw-bold fs-6">👤 @User.Identity.Name</span>
+                            </li>
+                            <li class="nav-item">
+                                <form asp-controller="Cuenta" asp-action="Logout" method="post" style="display:inline;">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="nav-link px-3 py-2 rounded fw-bold fs-5 border-0 bg-transparent"
+                                            style="color:#ff9999;"
+                                            onclick="return confirm('¿Estás seguro que deseas cerrar sesión?')">
+                                        🚪 Cerrar sesión
+                                    </button>
+                                </form>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        @if (TempData["Exito"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                @TempData["Exito"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        }
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                @TempData["Error"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        }
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2026 - FacturacionApp
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

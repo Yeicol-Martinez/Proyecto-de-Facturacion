@@ -1,0 +1,73 @@
+﻿@model IEnumerable<FacturacionApp.Models.Solicitud>
+@{
+    ViewBag.Title = "Bandeja de Solicitudes - Clientes";
+}
+
+<h2>👥 Bandeja de Solicitudes — Clientes</h2>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">No hay solicitudes registradas.</div>
+}
+else
+{
+    <table class="table table-bordered table-hover align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>Datos actuales</th>
+                <th>Cambio solicitado</th>
+                <th>Solicitante</th>
+                <th>Fecha</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var s in Model)
+            {
+                <tr>
+                    <td class="small">@s.DatosActuales</td>
+                    <td>@s.CambioPropuesto</td>
+                    <td>@s.Solicitante?.NombreCompleto</td>
+                    <td>@s.FechaSolicitud.ToString("dd/MM/yyyy hh:mm tt")</td>
+                    <td>
+                        @switch (s.Estado)
+                        {
+                            case FacturacionApp.Models.EstadoSolicitud.Pendiente:
+                                <span class="badge bg-warning text-dark">⏳ Pendiente</span>
+                                break;
+                            case FacturacionApp.Models.EstadoSolicitud.Aprobada:
+                                <span class="badge bg-success">✅ Aprobada</span>
+                                break;
+                            case FacturacionApp.Models.EstadoSolicitud.Rechazada:
+                                <span class="badge bg-danger">❌ Rechazada</span>
+                                break;
+                        }
+                    </td>
+                    <td style="min-width:220px;">
+                        @if (s.Estado == FacturacionApp.Models.EstadoSolicitud.Pendiente)
+                        {
+                            <form asp-action="Aprobar" asp-route-id="@s.Id" method="post" class="mb-1">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-sm btn-success w-100"
+                                        onclick="return confirm('¿Aprobar esta solicitud?')">
+                                    ✅ Aprobar
+                                </button>
+                            </form>
+                            <form asp-action="Rechazar" asp-route-id="@s.Id" method="post">
+                                @Html.AntiForgeryToken()
+                                <input type="text" name="comentario" class="form-control form-control-sm mb-1"
+                                       placeholder="Motivo del rechazo" required />
+                                <button type="submit" class="btn btn-sm btn-danger w-100">❌ Rechazar</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <small class="text-muted">@s.ComentarioRevision</small>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

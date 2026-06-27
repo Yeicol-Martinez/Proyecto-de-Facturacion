@@ -1,0 +1,55 @@
+@model FacturacionApp.Models.Cliente
+@{
+    ViewData["Title"] = "Nuevo Cliente";
+}
+
+<h2>👥 Nuevo Cliente</h2>
+<hr />
+
+<div class="row justify-content-center">
+    <div class="col-md-7">
+        <div class="card shadow">
+            <div class="card-body">
+                <form asp-action="Create" method="post">
+                    @Html.AntiForgeryToken()
+                    <div asp-validation-summary="All" class="alert alert-danger" style="display:none"></div>
+
+                    <div class="mb-3">
+                        <label asp-for="Nombre" class="form-label fw-bold"></label>
+                        <input asp-for="Nombre" class="form-control" placeholder="Ej: Juan Pérez S.A." />
+                        <span asp-validation-for="Nombre" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="RncCedula" class="form-label fw-bold"></label>
+                        <input asp-for="RncCedula" class="form-control" placeholder="Ej: 101-12345-6" />
+                        <span asp-validation-for="RncCedula" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label fw-bold"></label>
+                        <input asp-for="Email" class="form-control" placeholder="correo@ejemplo.com" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Telefono" class="form-label fw-bold"></label>
+                        <input asp-for="Telefono" class="form-control" placeholder="809-000-0000" />
+                        <span asp-validation-for="Telefono" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Direccion" class="form-label fw-bold"></label>
+                        <textarea asp-for="Direccion" class="form-control" rows="2" placeholder="Dirección completa"></textarea>
+                        <span asp-validation-for="Direccion" class="text-danger"></span>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-success">💾 Guardar</button>
+                        <a asp-action="Index" class="btn btn-secondary">⬅ Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

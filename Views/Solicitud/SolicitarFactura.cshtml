@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Solicitar corrección de Factura";
+}
+
+<h2>📨 Solicitar corrección — Factura</h2>
+<a asp-controller="Factura" asp-action="Index" class="btn btn-secondary mb-3">← Volver</a>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">@Html.ValidationSummary(false)</div>
+}
+
+<div class="card" style="max-width:600px;">
+    <div class="card-body p-4">
+        <h6 class="text-muted">Datos actuales</h6>
+        <p class="border rounded p-3 bg-light">@ViewBag.DatosActuales</p>
+
+        <form asp-action="SolicitarFactura" asp-route-id="@Context.Request.RouteValues["id"]" method="post">
+            @Html.AntiForgeryToken()
+            <div class="mb-3">
+                <label class="form-label">¿Qué necesitas corregir?</label>
+                <textarea name="cambioPropuesto" class="form-control" rows="4" required
+                          placeholder="Ej: La cantidad del producto X debió ser 2, no 20"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Enviar solicitud al Administrador</button>
+        </form>
+    </div>
+</div>

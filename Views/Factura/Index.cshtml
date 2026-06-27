@@ -1,0 +1,93 @@
+@model IEnumerable<FacturacionApp.Models.Factura>
+@{
+    ViewData["Title"] = "Facturas";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>🧾 Facturas</h2>
+    @if (User.IsInRole("Admin") || User.IsInRole("Empleado"))
+    {
+        <a asp-action="Create" class="btn btn-success">➕ Nueva Factura</a>
+    }
+</div>
+
+<!-- Filtros -->
+<form method="get" asp-action="Index" class="card card-body mb-3 shadow-sm">
+    <div class="row g-2 align-items-end">
+        <div class="col-md-4">
+            <label class="form-label fw-bold">Estado</label>
+            <select name="estado" class="form-select">
+                <option value="">-- Todos --</option>
+                <option value="Pendiente" selected="@(ViewBag.EstadoFiltro == "Pendiente")">⏳ Pendiente</option>
+                <option value="Pagada"    selected="@(ViewBag.EstadoFiltro == "Pagada")">✅ Pagada</option>
+                <option value="Anulada"   selected="@(ViewBag.EstadoFiltro == "Anulada")">❌ Anulada</option>
+            </select>
+        </div>
+        <div class="col-md-5">
+            <label class="form-label fw-bold">Cliente</label>
+            <select name="clienteId" class="form-select" asp-items="ViewBag.Clientes">
+                <option value="">-- Todos los clientes --</option>
+            </select>
+        </div>
+        <div class="col-md-3 d-flex gap-2">
+            <button type="submit" class="btn btn-primary w-100">🔍 Filtrar</button>
+            <a asp-action="Index" class="btn btn-outline-secondary">✖</a>
+        </div>
+    </div>
+</form>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">No hay facturas que mostrar.</div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle shadow-sm">
+            <thead class="table-dark">
+                <tr>
+                    <th>No. Factura</th>
+                    <th>Cliente</th>
+                    <th>Fecha</th>
+                    <th>Vence</th>
+                    <th>Total</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var f in Model)
+                {
+                    <tr>
+                        <td class="fw-bold">@f.NumeroFactura</td>
+                        <td>@f.Cliente?.Nombre</td>
+                        <td>@f.FechaEmision.ToString("dd/MM/yyyy")</td>
+                        <td>@f.FechaVencimiento?.ToString("dd/MM/yyyy")</td>
+                        <td class="fw-bold">RD$ @f.Total.ToString("N2")</td>
+                        <td>
+                            <span class="badge badge-estado-@f.Estado">@f.Estado</span>
+                        </td>
+                        <td>
+                            <a asp-action="Detalle" asp-route-id="@f.Id" class="btn btn-sm btn-outline-info">👁️ Ver</a>
+                            @if (User.IsInRole("Admin") && f.Estado != EstadoFactura.Pagada)
+                            {
+                                <form asp-action="Delete" asp-route-id="@f.Id" method="post" class="d-inline"
+                                      onsubmit="return confirm('¿Eliminar factura @f.NumeroFactura?')">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">🗑️</button>
+                                </form>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot class="table-secondary">
+                <tr>
+                    <td colspan="4" class="fw-bold text-end">TOTAL:</td>
+                    <td class="fw-bold">RD$ @Model.Sum(f => f.Total).ToString("N2")</td>
+                    <td colspan="2"></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+}

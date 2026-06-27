@@ -1,0 +1,79 @@
+@model IEnumerable<FacturacionApp.Models.Factura>
+@{
+    ViewData["Title"] = "Reporte de Facturación";
+    var pagadas   = Model.Where(f => f.Estado == EstadoFactura.Pagada);
+    var pendientes = Model.Where(f => f.Estado == EstadoFactura.Pendiente);
+    var anuladas  = Model.Where(f => f.Estado == EstadoFactura.Anulada);
+}
+
+<h2>📊 Reporte de Facturación</h2>
+<hr />
+
+<div class="row g-3 mb-4">
+    <div class="col-md-3">
+        <div class="card text-center border-primary shadow">
+            <div class="card-header bg-primary text-white fw-bold">Total Emitido</div>
+            <div class="card-body">
+                <h4>RD$ @Model.Where(f => f.Estado != EstadoFactura.Anulada).Sum(f => f.Total).ToString("N2")</h4>
+                <small class="text-muted">@Model.Count(f => f.Estado != EstadoFactura.Anulada) facturas válidas</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-center border-success shadow">
+            <div class="card-header bg-success text-white fw-bold">✅ Cobrado</div>
+            <div class="card-body">
+                <h4 class="text-success">RD$ @pagadas.Sum(f => f.Total).ToString("N2")</h4>
+                <small class="text-muted">@pagadas.Count() facturas</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-center border-warning shadow">
+            <div class="card-header bg-warning fw-bold">⏳ Pendiente</div>
+            <div class="card-body">
+                <h4 class="text-warning">RD$ @pendientes.Sum(f => f.Total).ToString("N2")</h4>
+                <small class="text-muted">@pendientes.Count() facturas</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-center border-danger shadow">
+            <div class="card-header bg-danger text-white fw-bold">❌ Anulado</div>
+            <div class="card-body">
+                <h4 class="text-danger">RD$ @anuladas.Sum(f => f.Total).ToString("N2")</h4>
+                <small class="text-muted">@anuladas.Count() facturas</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-sm table-striped table-hover align-middle shadow-sm">
+        <thead class="table-dark">
+            <tr>
+                <th>No. Factura</th>
+                <th>Cliente</th>
+                <th>Fecha</th>
+                <th class="text-end">Subtotal</th>
+                <th class="text-end">ITBIS</th>
+                <th class="text-end">Total</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var f in Model.OrderByDescending(f => f.FechaEmision))
+            {
+                <tr>
+                    <td><a asp-action="Detalle" asp-route-id="@f.Id">@f.NumeroFactura</a></td>
+                    <td>@f.Cliente?.Nombre</td>
+                    <td>@f.FechaEmision.ToString("dd/MM/yyyy")</td>
+                    <td class="text-end">RD$ @f.Subtotal.ToString("N2")</td>
+                    <td class="text-end text-warning">RD$ @f.TotalItbis.ToString("N2")</td>
+                    <td class="text-end fw-bold">RD$ @f.Total.ToString("N2")</td>
+                    <td><span class="badge badge-estado-@f.Estado">@f.Estado</span></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

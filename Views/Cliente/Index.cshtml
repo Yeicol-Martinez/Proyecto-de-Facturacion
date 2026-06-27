@@ -1,0 +1,65 @@
+@model IEnumerable<FacturacionApp.Models.Cliente>
+@{
+    ViewData["Title"] = "Clientes";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>👥 Clientes</h2>
+    @if (User.IsInRole("Admin") || User.IsInRole("DirectorOperaciones"))
+    {
+        <a asp-action="Create" class="btn btn-success">➕ Nuevo Cliente</a>
+    }
+</div>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">No hay clientes registrados.</div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle shadow-sm">
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>RNC / Cédula</th>
+                    <th>Correo</th>
+                    <th>Teléfono</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var c in Model)
+                {
+                    <tr>
+                        <td>@c.Id</td>
+                        <td class="fw-bold">@c.Nombre</td>
+                        <td>@c.RncCedula</td>
+                        <td>@c.Email</td>
+                        <td>@c.Telefono</td>
+                        <td>
+                            @if (User.IsInRole("Admin") || User.IsInRole("DirectorOperaciones"))
+                            {
+                                <a asp-action="Edit" asp-route-id="@c.Id" class="btn btn-sm btn-outline-primary">✏️ Editar</a>
+                            }
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <form asp-action="Delete" asp-route-id="@c.Id" method="post" class="d-inline"
+                                      onsubmit="return confirm('¿Eliminar cliente @c.Nombre?')">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">🗑️ Eliminar</button>
+                                </form>
+                            }
+                            @if (User.IsInRole("Empleado"))
+                            {
+                                <a asp-controller="Solicitud" asp-action="SolicitarCliente" asp-route-id="@c.Id" class="btn btn-sm btn-outline-warning">📨 Solicitar cambio</a>
+                            }
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

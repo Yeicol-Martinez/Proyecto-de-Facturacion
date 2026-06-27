@@ -1,0 +1,66 @@
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="text-center mb-4">
+    <h1 class="display-5 fw-bold">🧾 Sistema de Facturación</h1>
+    <p class="lead text-muted">Panel de control general</p>
+</div>
+
+<div class="row g-4 mb-4">
+    <div class="col-md-4">
+        <div class="card text-white bg-primary h-100 shadow">
+            <div class="card-body text-center">
+                <div class="fs-1">🧾</div>
+                <h2 class="display-4 fw-bold">@ViewBag.TotalFacturas</h2>
+                <p class="fs-5">Total Facturas</p>
+                <a asp-controller="Factura" asp-action="Index" class="btn btn-light btn-sm">Ver todas</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-success h-100 shadow">
+            <div class="card-body text-center">
+                <div class="fs-1">👥</div>
+                <h2 class="display-4 fw-bold">@ViewBag.TotalClientes</h2>
+                <p class="fs-5">Clientes</p>
+                <a asp-controller="Cliente" asp-action="Index" class="btn btn-light btn-sm">Gestionar</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-warning text-dark h-100 shadow">
+            <div class="card-body text-center">
+                <div class="fs-1">📦</div>
+                <h2 class="display-4 fw-bold">@ViewBag.TotalProductos</h2>
+                <p class="fs-5">Productos</p>
+                <a asp-controller="Producto" asp-action="Index" class="btn btn-dark btn-sm">Gestionar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4">
+    <div class="col-md-6">
+        <div class="card border-warning shadow">
+            <div class="card-header bg-warning text-dark fw-bold">⏳ Por Cobrar (Pendiente)</div>
+            <div class="card-body text-center">
+                <h3 class="display-5 fw-bold text-warning">RD$ @ViewBag.TotalPendiente.ToString("N2")</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card border-success shadow">
+            <div class="card-header bg-success text-white fw-bold">✅ Total Cobrado</div>
+            <div class="card-body text-center">
+                <h3 class="display-5 fw-bold text-success">RD$ @ViewBag.TotalCobrado.ToString("N2")</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="text-center mt-5">
+    <a asp-controller="Factura" asp-action="Create" class="btn btn-primary btn-lg px-5 shadow">
+        ➕ Nueva Factura
+    </a>
+</div>

@@ -1,0 +1,127 @@
+@model FacturacionApp.Models.Factura
+@{
+    ViewData["Title"] = "Detalle Factura";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>🧾 Factura: <span class="text-primary">@Model.NumeroFactura</span></h2>
+    <div class="d-flex gap-2">
+        <span class="badge badge-estado-@Model.Estado fs-6 p-2">@Model.Estado</span>
+        <a asp-action="Index" class="btn btn-outline-secondary">⬅ Volver</a>
+    </div>
+</div>
+
+<div class="card shadow mb-4">
+    <div class="card-header bg-dark text-white fw-bold">📋 Información General</div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <p><strong>Cliente:</strong> @Model.Cliente?.Nombre</p>
+                <p><strong>RNC/Cédula:</strong> @Model.Cliente?.RncCedula</p>
+                <p><strong>Correo:</strong> @Model.Cliente?.Email</p>
+                <p><strong>Dirección:</strong> @Model.Cliente?.Direccion</p>
+            </div>
+            <div class="col-md-6">
+                <p><strong>Fecha de Emisión:</strong> @Model.FechaEmision.ToString("dd/MM/yyyy")</p>
+                <p><strong>Fecha de Vencimiento:</strong> @Model.FechaVencimiento?.ToString("dd/MM/yyyy")</p>
+                <p><strong>Observaciones:</strong> @Model.Observaciones</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow mb-4">
+    <div class="card-header bg-dark text-white fw-bold">📦 Detalle de Productos</div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-bordered mb-0 align-middle">
+                <thead class="table-secondary">
+                    <tr>
+                        <th>Producto</th>
+                        <th class="text-center">Cantidad</th>
+                        <th class="text-end">Precio Unit.</th>
+                        <th class="text-center">ITBIS %</th>
+                        <th class="text-end">Subtotal</th>
+                        <th class="text-end">Monto ITBIS</th>
+                        <th class="text-end">Total Línea</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var d in Model.Detalles)
+                    {
+                        decimal sub   = d.Cantidad * d.PrecioUnitario;
+                        decimal itb   = sub * (d.Itbis / 100);
+                        decimal total = sub + itb;
+                        <tr>
+                            <td class="fw-bold">@d.Producto?.Nombre</td>
+                            <td class="text-center">@d.Cantidad</td>
+                            <td class="text-end">RD$ @d.PrecioUnitario.ToString("N2")</td>
+                            <td class="text-center">@d.Itbis%</td>
+                            <td class="text-end">RD$ @sub.ToString("N2")</td>
+                            <td class="text-end text-warning">RD$ @itb.ToString("N2")</td>
+                            <td class="text-end fw-bold">RD$ @total.ToString("N2")</td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr class="table-light">
+                        <td colspan="6" class="text-end fw-bold">Subtotal:</td>
+                        <td class="text-end fw-bold">RD$ @Model.Subtotal.ToString("N2")</td>
+                    </tr>
+                    <tr class="table-light">
+                        <td colspan="6" class="text-end fw-bold">ITBIS:</td>
+                        <td class="text-end fw-bold text-warning">RD$ @Model.TotalItbis.ToString("N2")</td>
+                    </tr>
+                    <tr class="table-success">
+                        <td colspan="6" class="text-end fw-bold fs-5">TOTAL:</td>
+                        <td class="text-end fw-bold fs-5">RD$ @Model.Total.ToString("N2")</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Cambiar Estado -->
+@if (User.IsInRole("Admin") && Model.Estado != EstadoFactura.Anulada)
+{
+    <div class="d-flex gap-2 mb-3">
+        <a asp-action="EditarFactura" asp-route-id="@Model.Id" class="btn btn-warning">✏️ Editar Factura</a>
+        <a asp-controller="Auditoria" asp-action="Factura" asp-route-id="@Model.Id" class="btn btn-outline-dark">📋 Ver Historial</a>
+    </div>
+}
+
+<!-- Cambiar Estado -->
+@if (User.IsInRole("Admin") && Model.Estado != EstadoFactura.Anulada)
+{
+    <div class="card shadow mb-4">
+        <div class="card-header bg-secondary text-white fw-bold">⚙️ Cambiar Estado</div>
+        <div class="card-body d-flex gap-2 flex-wrap">
+            @if (Model.Estado != EstadoFactura.Pagada)
+            {
+                <form asp-action="CambiarEstado" method="post" class="d-inline">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="id" value="@Model.Id" />
+                    <input type="hidden" name="nuevoEstado" value="Pagada" />
+                    <button type="submit" class="btn btn-success"
+                            onclick="return confirm('¿Marcar como PAGADA?')">
+                        ✅ Marcar como Pagada
+                    </button>
+                </form>
+            }
+            <form asp-action="CambiarEstado" method="post" class="d-inline">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="id" value="@Model.Id" />
+                <input type="hidden" name="nuevoEstado" value="Anulada" />
+                <button type="submit" class="btn btn-danger"
+                        onclick="return confirm('¿Anular esta factura? Esta acción es irreversible.')">
+                    ❌ Anular Factura
+                </button>
+            </form>
+        </div>
+    </div>
+    @if (User.IsInRole("Empleado"))
+    {
+        <a asp-controller="Solicitud" asp-action="SolicitarFactura" asp-route-id="@Model.Id" class="btn btn-warning mt-2">📨 Solicitar corrección</a>
+    }
+}

@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Configuración inicial";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>Configuración inicial - FacturacionApp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body style="background:#1e3a5f; min-height:100vh; display:flex; align-items:center;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="card shadow">
+                    <div class="card-body p-4">
+                        <h3 class="text-center mb-1">🔐 Configuración inicial</h3>
+                        <p class="text-muted text-center mb-4">Crea la cuenta del Administrador principal</p>
+
+                        @if (!ViewData.ModelState.IsValid)
+                        {
+                            <div class="alert alert-danger">
+                                @Html.ValidationSummary(false)
+                            </div>
+                        }
+
+                        <form asp-action="ConfigurarAdmin" method="post">
+                            @Html.AntiForgeryToken()
+
+                            <div class="mb-3">
+                                <label class="form-label">Nombre completo</label>
+                                <input type="text" name="nombreCompleto" class="form-control" required />
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Correo electrónico</label>
+                                <input type="email" name="email" class="form-control" required />
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Contraseña</label>
+                                <input type="password" name="password" class="form-control" required minlength="6" />
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Confirmar contraseña</label>
+                                <input type="password" name="confirmarPassword" class="form-control" required minlength="6" />
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100">Crear cuenta de Administrador</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

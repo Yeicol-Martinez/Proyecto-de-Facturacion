@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Solicitar cambio de Producto";
+}
+
+<h2>📨 Solicitar cambio — Producto</h2>
+<a asp-controller="Producto" asp-action="Index" class="btn btn-secondary mb-3">← Volver</a>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">@Html.ValidationSummary(false)</div>
+}
+
+<div class="card" style="max-width:600px;">
+    <div class="card-body p-4">
+        <h6 class="text-muted">Datos actuales</h6>
+        <p class="border rounded p-3 bg-light">@ViewBag.DatosActuales</p>
+
+        <form asp-action="SolicitarProducto" asp-route-id="@Context.Request.RouteValues["id"]" method="post">
+            @Html.AntiForgeryToken()
+            <div class="mb-3">
+                <label class="form-label">¿Qué necesitas cambiar?</label>
+                <textarea name="cambioPropuesto" class="form-control" rows="4" required
+                          placeholder="Ej: El precio correcto es RD$450.00, no RD$45.00"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Enviar solicitud al Administrador</button>
+        </form>
+    </div>
+</div>

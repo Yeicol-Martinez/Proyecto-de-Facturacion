@@ -1,0 +1,56 @@
+﻿@model IEnumerable<FacturacionApp.Models.UsuarioViewModel>
+
+@{
+    ViewBag.Title = "Gestión de Usuarios";
+}
+
+<h2>👥 Gestión de Usuarios</h2>
+<a asp-action="Crear" class="btn btn-success mb-3">➕ Crear nuevo usuario</a>
+
+<table class="table table-bordered table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Rol</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var u in Model)
+        {
+            <tr>
+                <td>@u.NombreCompleto</td>
+                <td>@u.Email</td>
+                <td>
+                    @switch (u.Rol)
+                    {
+                        case "Admin":
+                            <span class="badge bg-danger">👑 Administrador</span>
+                            break;
+                        case "DirectorOperaciones":
+                            <span class="badge bg-primary">👔 Director de Operaciones</span>
+                            break;
+                        case "AuxiliarInventario":
+                            <span class="badge bg-warning text-dark">📦 Auxiliar de Inventario</span>
+                            break;
+                        case "Empleado":
+                            <span class="badge bg-secondary">👤 Empleado</span>
+                            break;
+                        default:
+                            <span class="badge bg-light text-dark">@u.Rol</span>
+                            break;
+                    }
+                </td>
+                <td>
+                    <a asp-action="Editar" asp-route-id="@u.Id" class="btn btn-sm btn-warning">✏️ Editar</a>
+                    <form asp-action="Eliminar" asp-route-id="@u.Id" method="post" style="display:inline"
+                          onsubmit="return confirm('¿Eliminar este usuario?')">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-sm btn-danger">🗑️ Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
